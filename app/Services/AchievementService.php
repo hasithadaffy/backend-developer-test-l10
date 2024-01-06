@@ -1,5 +1,6 @@
 <?php
 
+//Service to handle all achievements related logic
 namespace App\Services;
 
 use App\Events\AchievementUnlocked;
@@ -8,6 +9,7 @@ use App\Models\UserAchievement;
 
 class AchievementService
 {
+    //Dispatch the event when a comment is added
     public function onCommentAdded($comment): void
     {
         $user = $comment->user;
@@ -30,7 +32,7 @@ class AchievementService
         }
     }
 
-
+    //Dispatch the event when a lesson is watched
     public function onLessonWatched($user, $lesson): void
     {
         $user->watched()->attach($lesson->id, ['watched' => TRUE]);
@@ -46,13 +48,13 @@ class AchievementService
         ];
 
         foreach ($lessonAchievements as $lessonCount => $achievement) {
-            if ($watchedCount == $lessonCount) {
+            if ($watchedCount >= $lessonCount) {
                 AchievementUnlocked::dispatch($user, $achievement);
-                break;
             }
         }
     }
 
+    //Fetch the next achievements
     public function getNextAchievements($userAchievements): array
     {
         $allAchievements = [
@@ -73,6 +75,7 @@ class AchievementService
         return array_values($remainingAchievements);
     }
 
+    //Dispatch the event when an achievement is unlocked
     public function onAchievementAdded($user, $achievement): void
     {
         $achievements = UserAchievement::where('user_id', $user->id)->count();
