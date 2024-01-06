@@ -2,6 +2,8 @@
 // Service to handle all badge related logic
 namespace App\Services;
 
+use App\Models\UserBadge;
+
 class BadgeService
 {
     //Fetch the next badge
@@ -14,7 +16,7 @@ class BadgeService
             'Master',
         ];
 
-        $userBadges = $user->badges->pluck('name')->toArray();
+        $userBadges = UserBadge::where('user_id', $user->id)->pluck('name')->toArray();
         $nextBadge = null;
         foreach ($badges as $badge) {
             if (!in_array($badge, $userBadges)) {
