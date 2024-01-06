@@ -1,9 +1,10 @@
 <?php
-
+// Service to handle all badge related logic
 namespace App\Services;
 
 class BadgeService
 {
+    //Fetch the next badge
     public function getNextBadge($user)
     {
         $badges = [
@@ -24,6 +25,7 @@ class BadgeService
         return $nextBadge;
     }
 
+    //Fetch the next badge progress
     public function getNextBadgeProgress($user)
     {
         $achievements = $user->achievements->count();
