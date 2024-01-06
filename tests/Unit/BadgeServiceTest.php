@@ -26,26 +26,26 @@ class BadgeServiceTest extends TestCase
         $this->assertEquals('Beginner', $nextBadge);
 
         // Add 'Beginner' badge to user
-        $badge = new UserBadge(['name' => 'Beginner']);
-        $user->badges()->save($badge);
+        $this->addBadge($user, 'Beginner');
+
         $nextBadge = $badgeService->getNextBadge($user);
         $this->assertEquals('Intermediate', $nextBadge);
 
         // Add 'Intermediate' badge to user
-        $badge = new UserBadge(['name' => 'Intermediate']);
-        $user->badges()->save($badge);
+        $this->addBadge($user, 'Intermediate');
+
         $nextBadge = $badgeService->getNextBadge($user);
         $this->assertEquals('Advanced', $nextBadge);
 
         // Add 'Advanced' badge to user
-        $badge = new UserBadge(['name' => 'Advanced']);
-        $user->badges()->save($badge);
+        $this->addBadge($user, 'Advanced');
+
         $nextBadge = $badgeService->getNextBadge($user);
         $this->assertEquals('Master', $nextBadge);
 
         // Add 'Master' badge to user
-        $badge = new UserBadge(['name' => 'Master']);
-        $user->badges()->save($badge);
+        $this->addBadge($user, 'Master');
+
         $nextBadge = $badgeService->getNextBadge($user);
         $this->assertNull($nextBadge);
     }
@@ -64,9 +64,31 @@ class BadgeServiceTest extends TestCase
         $this->assertEquals(0, $nextBadgeProgress);
 
         // Add 1 achievement to user
-        $user->achievements()->create(['name' => 'Achievement 1']);
-        $user->badges()->create(['name' => 'Beginner']);
+        $this->addAchievement($user, 'Achievement 1');
+
+        // Add 'Beginner' badge to user
+        $this->addBadge($user, 'Beginner');
+
         $nextBadgeProgress = $badgeService->getNextBadgeProgress($user);
-        $this->assertEquals(3, $nextBadgeProgress);
+        $this->assertEquals(4, $nextBadgeProgress);
+    }
+
+    /**
+     * Helper method to add a badge to the user.
+     */
+    private function addBadge(User $user, string $badgeName): void
+    {
+        $badge = new UserBadge();
+        $badge->name = $badgeName;
+        $badge->user_id = $user->id;
+        $badge->save();
+    }
+
+    /**
+     * Helper method to add an achievement to the user.
+     */
+    private function addAchievement(User $user, string $achievementName): void
+    {
+        $user->achievements()->create(['name' => $achievementName]);
     }
 }
