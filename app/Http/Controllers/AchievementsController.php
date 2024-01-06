@@ -24,9 +24,8 @@ class AchievementsController extends Controller
         // Fetch current badge
         $currentBadge = $user->badges()->orderBy('created_at', 'desc')->first();
 
-        // Fetch remaining to unlock next badge count
+        // Fetch remaining to unlock next badge
         $remainingToUnlockNextBadge = $this->badgeService->getNextBadgeProgress($user);
-
 
         return response()->json([
             'unlocked_achievements' => [$achievements],
