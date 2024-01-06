@@ -15,10 +15,19 @@ class AchievementsController extends Controller
     }
     public function index(User $user)
     {
+        // Fetch all User achievements
         $achievements = $user->achievements()->get()->pluck('name')->toArray();
+
+        // Fetch next available achievements
         $nextAvailableAchievements = $this->achievementService->getNextAchievements($achievements);
+
+        // Fetch current badge
         $currentBadge = $user->badges()->orderBy('created_at', 'desc')->first();
+
+        // Fetch remaining to unlock next badge count
         $remainingToUnlockNextBadge = $this->badgeService->getNextBadgeProgress($user);
+
+
         return response()->json([
             'unlocked_achievements' => [$achievements],
             'next_available_achievements' => [$nextAvailableAchievements],
