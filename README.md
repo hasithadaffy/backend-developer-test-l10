@@ -1,66 +1,52 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+## Project Description
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+This project is a web application built using the Laravel framework and MySQL database to provide customers with seamless access to their purchased courses. In addition to course access, the portal includes an Achievement System to enhance the user experience, encouraging engagement and progression.
 
-## About Laravel
+## Installation
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+To install this project, follow these steps:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+1. Clone the repository: `https://github.com/hasithadaffy/backend-developer-test-l10.git`
+2. Install dependencies: `composer install`
+3. Create the application key: `php artisan key:generate`
+4. Run the application: `php artisan serve`
+5. Run migrations: `php artisan migrate`
+6. Run seeders: `php artisan db:seed, php artisan db:seed UserSeeder, php artisan db:seed CommentSeeder`
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Test Cases
 
-## Learning Laravel
+Our test cases are written using PHPUnit. They cover various aspects of the application to ensure its correct functionality. Here's a brief overview:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+-   **Unit Tests:** These tests cover the individual units of the application, such as the `AchievementService` and `BadgeService`. They ensure that these services work as expected in isolation.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+-   **Integration Tests:** These tests cover the interaction between different parts of the application. They ensure that the services work correctly when used together.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+-   **Functional Tests:** These tests cover the functionality of the application from the user's perspective. They ensure that the application works correctly when used as intended.
 
-## Laravel Sponsors
+To run the tests, use the following command:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+`php artisan test`
 
-### Premium Partners
+## Service Classes
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+The project includes the following service classes:
+
+## AchievementService
+
+`AchievementService` is a core component of our application. It is responsible for managing user achievements. This includes tracking user progress, unlocking achievements when certain conditions are met, and providing a list of all achievements a user has earned.
+
+## BadgeService
+
+`BadgeService` is another crucial component of our application. It works in tandem with the `AchievementService`. While `AchievementService` tracks user progress, `BadgeService` is responsible for assigning badges to users based on their achievements. It also manages the badge inventory, and provides a list of all badges a user has earned.
 
 ## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+We welcome contributions from the community. Please read our [contribution guidelines](https://link-to-your-contribution-guidelines) before submitting a pull request.
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+This project is licensed under the MIT License. See the [LICENSE](https://link-to-your-license) file for details.
+
+## Contact
+
+If you have any questions or feedback, please contact us at [your-email@example.com](mailto:your-email@example.com).
